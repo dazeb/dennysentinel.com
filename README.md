@@ -55,6 +55,11 @@ All commands are run from the root of the project, from a terminal:
 | `npm run build && npm run deploy` | Deploy your production site to Cloudflare        |
 | `npm wrangler tail`               | View real-time logs for all Workers              |
 
+## Deployment
+
+This site builds to a static `dist/` directory.
+For Coolify, set the application build pack to Dockerfile and redeploy from GitHub.
+
 ## 👀 Want to learn more?
 
 Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
