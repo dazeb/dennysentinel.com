@@ -226,23 +226,26 @@ If an AI can do this in 12 minutes, what does defense look like?
 
 ## Reproduce it yourself
 
-The full lab lives in the Hermes Agent security skill tree — the agent that ran this attack documents its own capabilities:
+The full lab is open source at **[github.com/dazeb/ai-supply-chain-lab](https://github.com/dazeb/ai-supply-chain-lab)** — a self-contained repo with:
 
-- **Proxmox pentesting skill:** guest escape, API exploitation, disk forensics, network pivoting
-- **Supply-chain attack lab skill:** full lab architecture, 6 attack phases, deployment scripts (Python 3 stdlib only), defensive controls matrix, this blog post as reference material
+- **Lateral movement diagram** showing every hop of the attack
+- **Proxmox pentesting skill** — guest escape, API exploitation, disk forensics
+- **Supply-chain attack lab skill** — full architecture, 6 attack phases, defensive matrix
+- **Deployment scripts** — systemd-based, Python 3 stdlib only, zero dependencies
+- **This blog post** as reference documentation
 
-Both skills are bundled with the [Hermes Agent](https://github.com/nousresearch/hermes-agent) security capabilities under `profiles/redteam/skills/security/`:
-
+```text
+ai-supply-chain-lab/
+├── README.md                        ← lateral movement visual
+├── skills/
+│   ├── proxmox-pentesting/
+│   │   └── scripts/proxmox-enum.sh
+│   └── supply-chain-attack-lab/
+│       ├── scripts/deploy-sc-lab.sh
+│       └── references/blog-dennysentinel.md
 ```
-profiles/redteam/skills/security/
-├── proxmox-pentesting/SKILL.md
-│   └── scripts/proxmox-enum.sh       # One-shot recon
-└── supply-chain-attack-lab/SKILL.md
-    ├── scripts/deploy-sc-lab.sh       # Systemd-based lab deployment
-    └── references/blog-dennysentinel.md
-```
 
-All services use Python 3 stdlib only. Zero package installs. Systemd-based, survives reboots. The deployment script, attack chain, and defensive matrix are all there.
+Clone it. Run it. Harden your own pipeline before someone else does.
 
 ## Bottom line
 
