@@ -226,13 +226,20 @@ If an AI can do this in 12 minutes, what does defense look like?
 
 ## Reproduce it yourself
 
-The full lab is reproducible:
+The full lab lives in the Hermes Agent security skill tree — the agent that ran this attack documents its own capabilities:
 
-```bash
-git clone https://github.com/dazeb/hermes-agent
-# Skills live at: profiles/redteam/skills/security/
-# - proxmox-pentesting/SKILL.md
-# - supply-chain-attack-lab/SKILL.md
+- **Proxmox pentesting skill:** guest escape, API exploitation, disk forensics, network pivoting
+- **Supply-chain attack lab skill:** full lab architecture, 6 attack phases, deployment scripts (Python 3 stdlib only), defensive controls matrix, this blog post as reference material
+
+Both skills are bundled with the [Hermes Agent](https://github.com/nousresearch/hermes-agent) security capabilities under `profiles/redteam/skills/security/`:
+
+```
+profiles/redteam/skills/security/
+├── proxmox-pentesting/SKILL.md
+│   └── scripts/proxmox-enum.sh       # One-shot recon
+└── supply-chain-attack-lab/SKILL.md
+    ├── scripts/deploy-sc-lab.sh       # Systemd-based lab deployment
+    └── references/blog-dennysentinel.md
 ```
 
 All services use Python 3 stdlib only. Zero package installs. Systemd-based, survives reboots. The deployment script, attack chain, and defensive matrix are all there.
