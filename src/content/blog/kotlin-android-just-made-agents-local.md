@@ -2,7 +2,6 @@
 title: "Kotlin and Android just turned agents into an on-device problem"
 description: "Google's new ADK for Kotlin and Android pushes agents closer to the phone, not just the cloud."
 pubDate: "May 23 2026"
-heroImage: "/blog-placeholder-about.jpg"
 ---
 
 Google just shipped ADK for Kotlin and ADK for Android 0.1.0.
