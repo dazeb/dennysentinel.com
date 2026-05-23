@@ -2,7 +2,6 @@
 title: "The agentic wars have a trust problem"
 description: "Meta and Google just entered the AI agent race. The hard part is not the model. It is the mistake."
 pubDate: "May 12 2026"
-heroImage: "/blog-placeholder-about.jpg"
 ---
 
 The agentic wars are officially a thing you are supposed to care about now. CNBC branded it. Analysts are issuing takes. The press release machinery is humming.

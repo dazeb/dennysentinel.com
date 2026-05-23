@@ -2,7 +2,6 @@
 title: "Your AI agent's prompt is now a shell command"
 description: "Microsoft researchers found two critical RCE vulnerabilities in Semantic Kernel. A single prompt can launch executables. The agent frameworks we trust are the new attack surface."
 pubDate: "May 21 2026"
-heroImage: "/blog-placeholder-about.jpg"
 ---
 
 Microsoft's security team just published something that should make anyone running an AI agent in production stop and read the room. Two critical vulnerabilities in Semantic Kernel — CVE-2026-26030 and CVE-2026-25592 — let an attacker achieve remote code execution through nothing more than a crafted prompt.

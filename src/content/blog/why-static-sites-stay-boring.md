@@ -2,7 +2,6 @@
 title: "Why static sites stay boring"
 description: "A small argument for keeping the stack simple, predictable, and hard to ruin."
 pubDate: "May 11 2026"
-heroImage: "/blog-placeholder-4.jpg"
 ---
 
 I like static sites because they are rude in the best possible way.

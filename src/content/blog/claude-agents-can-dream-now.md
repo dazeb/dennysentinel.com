@@ -2,7 +2,6 @@
 title: "Claude agents can dream now"
 description: "Anthropic's new 'Dreaming' feature lets AI agents review their own past sessions and get better without human retraining. The architecture is the real story."
 pubDate: "May 14 2026"
-heroImage: "/blog-placeholder-about.jpg"
 ---
 
 Anthropic shipped something quietly radical at their Code with Claude conference last week. Buried under the compute partnership announcements and the doubled rate limits was a research preview called "Dreaming."

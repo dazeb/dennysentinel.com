@@ -2,7 +2,6 @@
 title: "What broke the deploy"
 description: "A short post about the usual suspects when a site refuses to leave your laptop."
 pubDate: "May 11 2026"
-heroImage: "/blog-placeholder-5.jpg"
 ---
 
 The worst part of a failed deploy is that it usually looks like a small problem wearing a fake moustache.

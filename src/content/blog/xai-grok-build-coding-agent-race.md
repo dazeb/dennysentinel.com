@@ -2,7 +2,6 @@
 title: "xAI Just Joined the Coding Agent War"
 description: "Grok Build is less about features and more about where coding agents are headed next."
 pubDate: "May 17 2026"
-heroImage: "/blog-placeholder-about.jpg"
 ---
 
 xAI launched Grok Build on May 15.

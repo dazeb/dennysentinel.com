@@ -2,7 +2,6 @@
 title: "Nobody ships a vibe"
 description: "Vibe coding makes great demos. Production agents need sandboxing, audit trails, and boundaries. The boring stuff is the product."
 pubDate: "May 13 2026"
-heroImage: "/blog-placeholder-about.jpg"
 ---
 
 Vibe coding is having a moment. Describe an app to an AI. Watch it generate a working prototype in minutes. Ship it before lunch. The demos are genuinely impressive.

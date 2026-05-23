@@ -35,25 +35,31 @@ import { SITE_TITLE } from '../consts';
     z-index: 100;
     margin: 0;
     padding: 0 1.5em;
-    background: rgba(var(--bg), 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgb(var(--border));
+    background: rgba(10, 10, 12, 0.85);
+    backdrop-filter: blur(16px) saturate(1.2);
+    -webkit-backdrop-filter: blur(16px) saturate(1.2);
+    border-bottom: 1px solid var(--border);
+  }
+
+  @media (prefers-color-scheme: light) {
+    header {
+      background: rgba(250, 250, 250, 0.85);
+    }
   }
 
   nav {
     display: flex;
     align-items: center;
     gap: 1.5em;
-    max-width: var(--content-wide, 960px);
+    max-width: var(--content-wide, 1100px);
     margin: 0 auto;
-    height: 56px;
+    height: 64px;
   }
 
   .site-title {
     font-size: 1.1em;
     font-weight: 700;
-    color: rgb(var(--black));
+    color: var(--text-primary);
     text-decoration: none;
     margin-right: auto;
     letter-spacing: -0.02em;
@@ -72,7 +78,7 @@ import { SITE_TITLE } from '../consts';
 
   .nav-links a {
     padding: 0.45em 0.75em;
-    color: rgb(var(--gray));
+    color: var(--text-secondary);
     border-radius: var(--radius-sm);
     font-size: 0.925em;
     font-weight: 500;
@@ -81,7 +87,7 @@ import { SITE_TITLE } from '../consts';
   }
 
   .nav-links a:hover {
-    color: rgb(var(--black));
+    color: var(--text-primary);
     background: var(--accent-muted);
     text-decoration: none;
   }
@@ -98,13 +104,13 @@ import { SITE_TITLE } from '../consts';
     width: 34px;
     height: 34px;
     border-radius: var(--radius-sm);
-    color: rgb(var(--gray));
+    color: var(--text-secondary);
     transition: all var(--transition-fast);
     text-decoration: none;
   }
 
   .social-links a:hover {
-    color: rgb(var(--black));
+    color: var(--text-primary);
     background: var(--accent-muted);
     text-decoration: none;
   }

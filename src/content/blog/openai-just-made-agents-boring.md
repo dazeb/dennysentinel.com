@@ -2,7 +2,6 @@
 title: "OpenAI just made agents boring"
 description: "AgentKit turns agent building into a managed workflow. That is the real shift."
 pubDate: "May 15 2026"
-heroImage: "/blog-placeholder-about.jpg"
 ---
 
 OpenAI shipped AgentKit yesterday.

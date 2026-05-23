@@ -2,7 +2,6 @@
 title: "Google declared the agentic era. The infrastructure land grab just started."
 description: "Google I/O 2026 was not about models. It was about owning the layer between the model and everything else. Managed Agents, Antigravity 2.0, Gemini Spark — the agent runtime is the new battleground."
 pubDate: "MAY 21 2026"
-heroImage: "/blog-placeholder-about.jpg"
 ---
 
 Google held I/O 2026 yesterday and declared the agentic Gemini era is here. The keynote packed enough announcements for a quarter's worth of product launches: Gemini 3.5 Flash, Gemini Omni, Antigravity 2.0, Managed Agents in the Gemini API, Gemini Spark as a persistent always-on agent, and agentic capabilities woven into Search, Shopping, Android, and Workspace.

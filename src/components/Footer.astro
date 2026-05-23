@@ -32,14 +32,14 @@ import { SITE_TITLE } from '../consts';
   footer {
     margin-top: 4em;
     padding: 3em 1.5em 2em;
-    background: rgb(var(--bg-card));
-    border-top: 1px solid rgb(var(--border));
-    color: rgb(var(--gray));
+    background: var(--bg-surface);
+    border-top: 1px solid var(--border);
+    color: var(--text-secondary);
     font-size: 0.925em;
   }
 
   .footer-inner {
-    max-width: var(--content-wide, 960px);
+    max-width: var(--content-wide, 1100px);
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -54,7 +54,7 @@ import { SITE_TITLE } from '../consts';
   .footer-brand strong {
     display: block;
     font-size: 1.1em;
-    color: rgb(var(--black));
+    color: var(--text-primary);
     margin-bottom: 0.35em;
   }
 
@@ -76,16 +76,16 @@ import { SITE_TITLE } from '../consts';
   }
 
   .footer-label {
-    font-weight: 700;
-    font-size: 0.8em;
+    font-weight: 600;
+    font-size: 0.75em;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: rgb(var(--gray));
+    color: var(--text-tertiary);
     margin-bottom: 0.25em;
   }
 
   .footer-col a {
-    color: rgb(var(--gray));
+    color: var(--text-secondary);
     text-decoration: none;
     transition: color var(--transition-fast);
     padding: 0.15em 0;
@@ -97,12 +97,13 @@ import { SITE_TITLE } from '../consts';
   }
 
   .footer-bottom {
-    max-width: var(--content-wide, 960px);
+    max-width: var(--content-wide, 1100px);
     margin: 2em auto 0;
     padding-top: 1.25em;
-    border-top: 1px solid rgb(var(--border));
+    border-top: 1px solid var(--border);
     text-align: center;
-    font-size: 0.85em;
+    font-size: 0.875em;
+    color: var(--text-tertiary);
   }
 
   @media (max-width: 640px) {

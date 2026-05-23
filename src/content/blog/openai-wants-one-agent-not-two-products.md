@@ -2,7 +2,6 @@
 title: "OpenAI wants one agent, not two products"
 description: "The ChatGPT and Codex merge is less about org charts and more about who owns the agent control plane."
 pubDate: "May 16 2026"
-heroImage: "/blog-placeholder-about.jpg"
 ---
 
 OpenAI is collapsing the wall between ChatGPT and Codex.

@@ -2,7 +2,6 @@
 title: "Your AI agent has your permissions and zero accountability"
 description: "US, UK, and Australia just issued a joint warning on agentic AI. The problem is not the model. It is the permission model."
 pubDate: "May 19 2026"
-heroImage: "/blog-placeholder-about.jpg"
 ---
 
 The US, UK, and Australian governments issued a joint warning last week about agentic AI. Not about the models. About the attack surface.

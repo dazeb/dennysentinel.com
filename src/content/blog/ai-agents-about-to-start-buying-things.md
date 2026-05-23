@@ -2,7 +2,6 @@
 title: "Your AI agent is about to start buying things without you"
 description: "Four protocols. The IMF is involved. Agent-to-agent commerce is not coming — it is here."
 pubDate: "May 20 2026"
-heroImage: "/blog-placeholder-about.jpg"
 ---
 
 The infrastructure for AI agents to buy and sell from each other is being built right now. Not in a lab. In production.

@@ -2,7 +2,6 @@
 title: "The AI agent hype just hit a wall"
 description: "79 percent of companies say they are deploying agents. Only 11 percent are running them in production. The gap tells the real story."
 pubDate: "May 18 2026"
-heroImage: "/blog-placeholder-about.jpg"
 ---
 
 Over a thousand executives, engineers, and investors gathered in Midtown Manhattan earlier this month for the AI Agent Conference. The message from the stage was supposed to be triumphant. The experimentation phase is over, they said. Agentic AI is entering the operational era.

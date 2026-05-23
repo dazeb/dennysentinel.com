@@ -2,7 +2,6 @@
 title: "An AI agent deleted a database in nine seconds"
 description: "A Cursor agent wiped a production database and every backup. The failure was not the model. It was the architecture."
 pubDate: "May 22 2026"
-heroImage: "/blog-placeholder-about.jpg"
 ---
 
 On April 25, a Cursor AI coding agent working for PocketOS — a software platform used by car rental businesses — deleted the company's production database. The whole thing took nine seconds. The agent also wiped every volume-level backup stored in the same Railway volume, because Railway keeps backups inside the volume they are supposed to protect. The most recent recoverable backup was three months old.
