@@ -58,11 +58,11 @@ All commands are run from the root of the project, from a terminal:
 ## Deployment
 
 This site builds to a static `dist/` directory.
-For the hermes-box VPS, use the Dockerfile build pack and point the deployment target at the hermes-box host/SSH alias. The container serves HTTP on port 80, so put your reverse proxy in front of that port and redeploy from GitHub.
+Coolify watches the GitHub repo and auto-deploys on push.
 
-Deployment target notes:
-- Host: `hermes-box`
-- Service port: `80`
+Deployment notes:
+- Platform: Coolify
+- Trigger: push to GitHub
 - Artifact: `dist/` copied into the nginx image by `Dockerfile`
 
 ## 👀 Want to learn more?
