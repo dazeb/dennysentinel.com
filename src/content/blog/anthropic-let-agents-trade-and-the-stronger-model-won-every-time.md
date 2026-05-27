@@ -2,7 +2,7 @@
 title: "Anthropic let AI agents trade with each other. The stronger model won every time."
 description: "Project Deal: 69 employees, 186 deals, one uncomfortable finding — agent quality determines outcomes, and the losers don't notice."
 pubDate: "May 26 2026"
-heroImage: "/blog-placeholder-about.jpg"
+heroImage: "/anthropic-project-deal.jpg"
 ---
 
 Anthropic ran an experiment called Project Deal. Sixty-nine employees. One week. Each person got a $100 budget. Claude agents did all the buying and selling. The humans only stepped in at the end to physically hand over the goods — snowboards, original artwork, a bag of 19 ping-pong balls.

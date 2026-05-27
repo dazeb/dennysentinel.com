@@ -2,7 +2,7 @@
 title: "AI agents are chaos engineering your infrastructure right now"
 description: "79% of orgs run agents in production. Zero of them track the outages agents cause."
 pubDate: "May 25 2026"
-heroImage: "/blog-placeholder-about.jpg"
+heroImage: "/ai-agents-chaos-infra.jpg"
 ---
 
 There is a category of production incident that engineering teams are not tracking yet. It does not fit any existing postmortem template. The root cause field says "connection pool saturation" or "cascading restart." The initiator is invisible.
