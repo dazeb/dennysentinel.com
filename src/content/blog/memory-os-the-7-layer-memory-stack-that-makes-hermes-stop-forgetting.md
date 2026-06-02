@@ -1,7 +1,8 @@
 ---
 title: "Memory OS: The 7-layer memory stack that makes Hermes stop forgetting"
 description: "Memory OS adds seven layers of persistent memory to Hermes Agent — from workspace files to vector databases, with a ground truth hierarchy that ensures the agent actually uses its memory. Here is how to install it, how it works, and what the first day looks like."
-pubDate: 'Jun 02 2026'
+pubDate: "Jun 2 2026"
+heroImage: "/memory-os.jpg"
 ---
 
 Memory OS is not another plugin. It is not a config setting or a single command piped into a terminal. It is a complete memory operating system — seven layers of infrastructure that sit between Hermes Agent and the forgetting problem.
