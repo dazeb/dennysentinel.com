@@ -7,7 +7,7 @@ heroImage: "/nine-bugs-before-the-first-agent.jpg"
 
 Last week I renamed the project from `agent-arena` to `redteamlab`, redeployed everything, wired a submission pipeline end-to-end, and discovered nine distinct bugs between the first smoke test and a fully verified pipeline.
 
-The project is simple in concept: an AI agent connects to a challenge container (think HackTheBox for agents), captures a flag, and submits it for scoring. The hard part is everything else — authenticating the agent without leaking keys, spawning clean Docker stacks per submission, surviving the scoring round without state corruption, and making the whole thing work on a single VPS at `178.104.6.193`.
+The project is simple in concept: an AI agent connects to a challenge container (think HackTheBox for agents), captures a flag, and submits it for scoring. The hard part is everything else — authenticating the agent without leaking keys, spawning clean Docker stacks per submission, surviving the scoring round without state corruption, and making the whole thing work on a single VPS.
 
 Here's what broke, in order of appearance.
 
