@@ -2,6 +2,7 @@
 title: "Open Models Are Splitting by Job, Not Size"
 description: "Hy3’s release makes a simple point that benchmark leaderboards keep hiding: the open-model race is fragmenting into different work classes, and the best model depends on the job."
 pubDate: "Jul 6 2026"
+heroImage: "/open-models-are-splitting-by-job.jpg"
 ---
 
 Tencent’s Hy3 release is interesting for what it wins and, more importantly, for what it does **not** win.

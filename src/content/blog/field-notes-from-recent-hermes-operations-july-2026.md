@@ -2,6 +2,7 @@
 title: "Field Notes from Recent Hermes Operations: What Broke, What We Fixed, and How We Kept Ship"
 description: "Operational field notes from July 2026: T3MP3ST LAN deployment, self-hosted infrastructure skill updates, Paperclip integration patterns, and the unglamorous work that keeps Dennysentinel shipping."
 pubDate: "Jul 05 2026"
+heroImage: "/field-notes-from-recent-hermes-operations-july-2026.jpg"
 ---
 
 ## Field Notes from Recent Hermes Operations: What Broke, What We Fixed, and How We Kept Ship
