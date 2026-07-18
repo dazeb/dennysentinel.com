@@ -1,129 +1,133 @@
 ---
 title: "Hermes Agent Deep Cuts: Profiles"
-description: "Most users run one Hermes instance and never realize they can have independent work, security research, and personal profiles — each with its own config, skills, cron jobs, and memory. Here is how profiles work and why they change everything."
-pubDate: "Jul 09 2026"
+description: "Most users run one Hermes instance and call it done. But a single command gives you completely independent agents — separate configs, API keys, skills, memory, even gateway setups — all on the same machine. Here is how profiles work and why you probably need more than one."
+pubDate: "Jul 18 2026"
 heroImage: "/hermes-agent-deep-cuts-profiles.jpg"
 ---
 
-I am running Hermes Agent v0.18.0 (2026.7.1), and this post is the first in an ongoing **Deep Cuts** series — spotlighting one specific feature that most users walk past.
+I am running Hermes Agent v0.18.2, and this post is part of the ongoing **Deep Cuts** series — spotlighting one specific feature that most users walk past.
 
-Today's feature: **Profiles**.
+Today's topic is **profiles**: the ability to run multiple independent Hermes agents on the same machine, each with its own config, API keys, memory, sessions, skills, cron jobs, and gateway state.
 
 ## What Are Profiles?
 
-Hermes profiles are fully independent agent instances sharing the same binary. Each profile gets its own:
+A profile is a separate Hermes home directory. Where your default profile lives under `~/.hermes/`, a new profile called `work` lives under `~/.hermes/profiles/work/` and has its own:
 
-- **Config** — model provider, toolsets, terminal backend, compression settings
-- **Skills** — an isolated skill directory loaded only in that profile
-- **Sessions** — separate conversation history, never cross-contaminated
-- **Cron jobs** — scheduled tasks belong to the profile that created them
-- **Memory** — durable facts stay in their profile's namespace
-- **Plugins** — enabled per-profile, not globally
+- `config.yaml` — model, provider, terminal backend, security settings
+- `.env` — API keys and secrets
+- `SOUL.md` — personality/system prompt overrides
+- `skills/` — completely independent skill library
+- `sessions/` — conversation history (no cross-contamination)
+- `memories/` — durable cross-session facts
+- `cron/` — scheduled jobs
+- State database — isolated SQLite store
 
-You create a profile, switch to it with `--profile`, and Hermes treats it like a different installation. The config files live under `~/.hermes/profiles/<name>/` with the same layout as the default profile.
+When you create a profile, Hermes **automatically generates a wrapper command** for it. Create a profile called `coder` and you immediately have `coder chat`, `coder setup`, `coder gateway start` — as if you installed a separate Hermes binary. No aliases, no PATH hacking, no remembering `hermes --profile coder`.
 
 ```bash
-hermes profile create security-lab
-hermes --profile security-lab
+hermes profile create coder          # Creates profile + "coder" CLI alias
+coder setup                          # Configure API keys and model
+coder chat                           # Start chatting in the coder profile
 ```
-
-That is it. You now have a second Hermes that cannot see your work profile's sessions, does not have access to the same skills, and talks to a different model if you configure it that way.
 
 ## Why It Is Obscure
 
-Profiles are not hidden, but they are easy to miss. The default `hermes` command runs the "default" profile with zero indication that more exist. The `hermes profile list` subcommand is buried in a long CLI reference, and the profile system really shines when you combine it with other features — worktree mode (`-w`), per-profile cron jobs, and isolated skill directories — that most users discover one at a time.
+Profiles are not hidden — they have their own section in the docs — but three things conspire to keep them underused:
 
-The documentation covers profiles, but there is no runtime hint that shouts "you could be running three of these." Most people use one profile indefinitely, treating Hermes as a single agent rather than a multi-instance framework.
+1. **The one-and-done startup path.** Most users install Hermes, run through `hermes setup` once, configure a model, and start chatting. Nothing in the setup wizard asks "how many profiles do you want?" It assumes one.
+
+2. **The CLI auto-command is invisible until you create a profile.** You cannot discover `coder chat` exists without first running `hermes profile create coder`. The generated command appears with no announcement — it just works, silently, the next time you tab-complete.
+
+3. **No obvious use case on day one.** When you are evaluating an agent, you run it, test it, and decide whether to keep it. The need for multiple profiles emerges in week two or three, when your chat history is full of everything — personal queries, work repos, security research, random experiments — and you wish they were separate.
 
 ## How to Use Profiles
 
-### Create and Switch
+### Creating Profiles
 
 ```bash
-# List existing profiles
-hermes profile list
+# Blank profile — needs full setup
+hermes profile create mybot
 
-# Create from scratch
-hermes profile create redteam
+# Clone config from current profile (shared model/provider settings)
+hermes profile create work --clone
 
-# Clone your current profile as a starting point
-hermes profile create personal --clone
-
-# Switch for a single command
-hermes --profile redteam chat -q "Scan our infrastructure for exposed ports"
-
-# Set a profile as your default
-hermes profile use personal
+# Clone everything — config, skills, memory, sessions
+hermes profile create backup --clone-all
 ```
 
-### Per-Profile Configuration
-
-Each profile has its own `config.yaml` and `.env`. This means you can wire different providers, models, and tools to different profiles:
+### Managing Profiles
 
 ```bash
-# Work profile uses Claude for coding
-hermes --profile work config set model.default anthropic/claude-sonnet-4
-
-# Redteam profile uses a cheaper model for reconnaissance
-hermes --profile redteam config set model.default openrouter/deepseek/deepseek-v3
-
-# Personal profile uses a local model (no API cost)
-hermes --profile personal config set model.provider openai-compatible
-hermes --profile personal config set model.base_url http://localhost:1234/v1
+hermes profile list           # See all profiles
+hermes profile show work      # Inspect a profile's config
+hermes profile use work       # Set as default for `hermes` commands
+hermes profile describe work --text "Reads source code and writes findings"
+hermes profile alias work --name h-work    # Custom alias
 ```
 
-### Per-Profile Skills
-
-Skills installed in one profile do not pollute another. This is useful when you want security-research skills available in your redteam profile but not in your work profile, or when you are testing a new skill before promoting it:
+### Transferring Profiles Between Machines
 
 ```bash
-# Skills live under ~/.hermes/profiles/<name>/skills/
-hermes --profile redteam skills install cybersecurity-skill-bundle
-hermes --profile work skills list  # No security tools visible here
+# Export
+hermes profile export work -o work-backup.tar.gz
+
+# On another machine
+hermes profile import work-backup.tar.gz --name work
 ```
 
-### Per-Profile Cron Jobs
+### Knowing Where You Are
 
-Cron jobs are profile-scoped. Your work profile's daily standup briefing does not interfere with your personal profile's morning news scan. Each scheduler runs independently:
+When you are juggling multiple profiles, it is easy to forget which one is active. The current profile name shows in the TUI status bar:
+
+```
+[default] $ hermes
+```
+
+Or check explicitly:
 
 ```bash
-hermes --profile work cron list
-hermes --profile personal cron create "every morning 7am" "Summarize Hacker News top stories"
+hermes profile show
+> Active profile: work
 ```
 
-### Wrapper Scripts
+### Profile Descriptions for Kanban Orchestration
 
-For everyday use, `hermes profile alias` creates shell wrappers so you do not type `--profile` every time:
+If you use the kanban system for multi-agent coordination, profile descriptions tell the orchestrator what each profile is good at:
 
 ```bash
-hermes profile alias work hw
-hermes profile alias redteam hr
-
-# Now these work:
-hw chat -q "What is on my calendar today?"
-hr chat -q "Check if our CVEs have any new exploits"
+hermes profile create researcher --description "Reads source code and external docs, writes findings."
+hermes profile create coder --description "Implements features, writes tests, refactors code."
 ```
+
+The kanban dispatcher reads these descriptions when routing tasks.
 
 ## A Practical Scenario
 
-Here is a setup I run daily:
+You run a VPS serving a Telegram gateway. You want your personal assistant profile to have full shell access — `terminal`, `file` tools, the works. You also want a client-facing profile that runs on the same gateway but is locked down: no `terminal`, no `file write`, just `web_search`, `web_extract`, and a curated skill library.
 
-**Profile: `work`** — Claude Sonnet 4 via Anthropic, full toolset (web, file, terminal, browser, delegation), skills for code review and API design, cron jobs for daily standup prep and dependency audit. This is the profile I use for development and writing.
+With profiles, this takes three commands:
 
-**Profile: `redteam`** — DeepSeek V3 via OpenRouter (cheaper for bulk scanning), terminal-heavy toolset with browser disabled, skills for CVE research and vulnerability assessment, cron jobs for overnight attack-surface scans against isolated lab targets. This profile has no access to my work repos or sessions.
+```bash
+# Create the locked-down profile, cloning config
+hermes profile create client --clone
 
-**Profile: `personal`** — A local Llama model via Ollama (free, offline), limited to web search and note-taking skills, Telegram gateway only (no CLI). Used for personal research, reading summaries, and casual conversation.
+# Switch to it and configure gateway restrictions
+client setup
+client gateway start
+```
 
-Three independent agents. One binary. Zero cross-contamination.
+The client profile runs its own gateway with its own `.env` (separate Telegram bot token, no API keys with shell access) and its own `config.yaml` (telegram toolset stripped to read-only). The same VPS, same Hermes binary, but two completely independent agents with different security postures.
+
+Meanwhile, your `personal` profile continues running its own gateway on a different Telegram bot token, with full access. No config conflicts. No "did I give this bot the wrong API key?" anxiety.
 
 ## A Gotcha
 
-**Profile isolation is filesystem-deep, not process-level.** Profiles share the same Hermes binary, Python runtime, and process namespace. A runaway cron job in one profile can consume system resources that affect another profile's running session. If you run profile-based workloads on resource-constrained hardware (like my WSL partition with 8 GB RAM), plan your cron schedules to avoid overlapping heavy jobs across profiles.
+**Profile commands are not sticky across terminal sessions for interactive use.** If you run `hermes profile use work`, a plain `hermes` command will start the work profile. But `coder chat` (the auto-generated alias) always starts the coder profile, regardless of the sticky default. This is usually the behavior you want — explicit commands should be explicit — but it can surprise you if you type the wrong alias after setting a profile default.
 
-Also: `hermes profile delete` is destructive. It removes the entire profile directory including its sessions, skills, and cron definitions. There is no trash or undo — the curator safety net only covers skills in the default profile. Use `hermes profile show <name>` to review what a profile contains before deleting it.
+Also note that **cloned profiles inherit platform credentials.** If you clone your main profile and both profiles try to start gateways on the same Telegram bot token, only one will connect. Each profile needs its own set of platform tokens. The `--clone` flag copies the config but you should regenerate or swap `.env` values for gateway platforms.
 
 ## Closing
 
-Profiles transform Hermes from a single-agent tool into a multi-instance agent orchestrator. They let you compartmentalize by role, provider, and risk level without running multiple installations or Docker containers. If you run Hermes for more than one kind of work, you are leaving capability on the table by using a single profile.
+Profiles transform Hermes from a single-agent tool into a multi-agent platform. One binary, one install, many independent agents — work and personal, locked-down and full-access, research and production. The CLI auto-commands make switching between them feel like separate programs, not configuration gymnastics.
 
-Relevant docs: [Hermes Agent Profiles](https://hermes-agent.nousresearch.com/docs/user-guide/profiles)
+The profile commands reference lives at the [Hermes Agent profile docs](https://hermes-agent.nousresearch.com/docs/reference/profile-commands), and the longer profiles guide is at the [Profiles user guide](https://hermes-agent.nousresearch.com/docs/user-guide/profiles).
